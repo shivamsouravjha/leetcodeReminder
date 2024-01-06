@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>LeetCode Stats</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="handleInputContainer">
+        <input type="text" id="handleName" placeholder="Enter your Handle">
+        <button id="fetchData">Submit</button>
+    </div>
+
+    <div id="dataContainer" class="hidden">
+        <div id="handleDisplaySection">
+            Handle: <span id="handleDisplay"></span>
+            <button id="editHandle">Edit</button>
+        </div>
+        <div id="solvedProblems">
+            <div class="circle">
+                <span id="totalSolved">0</span>
+                <span>Solved</span>
+            </div>
+        </div>
+        <div id="problemStats">
+            <div class="stats easy">
+                <span>Easy</span>
+                <span id="easySolved">0</span>/<span id="easyTotal">0</span>
+                Beats <span id="easyPercent">0%</span>
+            </div>
+            <div class="stats medium">
+                <span>Medium</span>
+                <span id="mediumSolved">0</span>/<span id="mediumTotal">0</span>
+                Beats <span id="mediumPercent">0%</span>
+            </div>
+            <div class="stats hard">
+                <span>Hard</span>
+                <span id="hardSolved">0</span>/<span id="hardTotal">0</span>
+                Beats <span id="hardPercent">0%</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
