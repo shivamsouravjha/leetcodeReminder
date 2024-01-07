@@ -6,19 +6,19 @@ chrome.runtime.onInstalled.addListener(async () => {
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     if (message.handleName) {
         fetchLeetcodeStats(message.handleName).then(stats => {
-            console.log(stats)
-            sendResponse(stats);
+            sendResponse({ stats, leetcodeStats: true });
+        }).catch(error => {
+            console.error('Error fetching stats:', error);
+            sendResponse({ error: error.message });
+        });
+    } else if (message.action) {
+        fetchTodaysQuestion().then(stats => {
+            sendResponse({ stats });
         }).catch(error => {
             console.error('Error fetching stats:', error);
             sendResponse({ error: error.message });
         });
     }
-    fetchTodaysQuestion().then(stats => {
-        sendResponse(stats);
-    }).catch(error => {
-        console.error('Error fetching stats:', error);
-        sendResponse({ error: error.message });
-    });
     return true;
 });
 

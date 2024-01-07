@@ -5,13 +5,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const editHandleButton = document.getElementById('editHandle');
     const handleInputContainer = document.getElementById('handleInputContainer');
     const dataContainer = document.getElementById('dataContainer');
-
     const savedHandle = localStorage.getItem('leetcodeHandle');
+    fetchQuestionOfTheDay();
+
     if (savedHandle) {
         handleInputContainer.style.display = 'none';
         displayHandleName(savedHandle);
+        sendMessageToBackground({ handleName: savedHandle });
     }
-
     fetchDataButton.addEventListener('click', function() {
         const handleName = document.getElementById('handleName').value.trim();
         if (handleName) {
@@ -44,21 +45,39 @@ function displayHandleName(handleName) {
 
 function sendMessageToBackground(message) {
     chrome.runtime.sendMessage(message, function(response) {
-        if (response.stats) {
+        if (response && response.leetcodeStats) {
             displayStats(response.stats);
         }
     });
 }
 
-function displayStats(stats) {
-    document.getElementById('totalSolved').textContent ="1" + ' Solved';
-    document.getElementById('easySolved').textContent ="2";
-    // document.getElementById('easyTotal').textContent = stats.easy.total;
-    // document.getElementById('easyPercent').textContent = 'Beats ' + stats.easy.percent + '%';
-    // document.getElementById('mediumSolved').textContent = stats.medium.solved;
-    // document.getElementById('mediumTotal').textContent = stats.medium.total;
-    // document.getElementById('mediumPercent').textContent = 'Beats ' + stats.medium.percent + '%';
-    // document.getElementById('hardSolved').textContent = stats.hard.solved;
-    // document.getElementById('hardTotal').textContent = stats.hard.total;
-    // document.getElementById('hardPercent').textContent = 'Beats ' + stats.hard.percent + '%';
+function displayStats(response) {
+    document.getElementById('totalSolved').textContent = response.matchedUser.submitStatsGlobal.acSubmissionNum[0].count;
+    document.getElementById('easyTotal').textContent = response.allQuestionsCount[1].count;
+    document.getElementById('easySolved').textContent = response.matchedUser.submitStatsGlobal.acSubmissionNum[1].count;
+    document.getElementById('mediumTotal').textContent =response.allQuestionsCount[2].count;
+    document.getElementById('mediumSolved').textContent = response.matchedUser.submitStatsGlobal.acSubmissionNum[2].count;
+    document.getElementById('hardTotal').textContent = response.allQuestionsCount[3].count;
+    document.getElementById('hardSolved').textContent = response.matchedUser.submitStatsGlobal.acSubmissionNum[3].count;
+}
+
+function fetchQuestionOfTheDay() {
+    // Placeholder: Replace with an actual call to fetch the question of the day
+    chrome.runtime.sendMessage({ action: 'getQuestionOfTheDay' }, function(response) {
+    if (response && response.stats) {
+            displayQuestionOfTheDay(response.stats);
+        }
+    });
+}
+function displayQuestionOfTheDay(question) {
+    const questionElement = document.getElementById('questionOfTheDay');
+    questionElement.innerHTML = ''; // Clear any existing content
+
+    const linkElement = document.createElement('a');
+    linkElement.href = "https://leetcode.com" + question.link; 
+    linkElement.textContent = question.question.title; 
+    linkElement.target = '_blank'; // Open in a new tab
+
+    // Append the link element to the question element
+    questionElement.appendChild(linkElement);
 }
