@@ -7,15 +7,11 @@
     "default_popup": "popup.html",
     "default_icon": {
       "16": "images/1.png",
-      "48": "images/1.png",
-      "128": "images/1.png"
+      "48": "images/2.png",
+      "128": "images/3.png"
     }
   },
   "permissions": [
-    "activeTab",
-    "scripting",
-    "tabs",
-    "storage",
     "background"
   ],
   "host_permissions": [
