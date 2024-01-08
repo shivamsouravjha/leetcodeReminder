@@ -6,7 +6,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const handleInputContainer = document.getElementById('handleInputContainer');
     const dataContainer = document.getElementById('dataContainer');
     const savedHandle = localStorage.getItem('leetcodeHandle');
+    const nameInput = document.getElementById('handleName');
     fetchQuestionOfTheDay();
+
+    nameInput.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            submitHandleName(nameInput);
+        }
+    });
 
     if (savedHandle) {
         handleInputContainer.style.display = 'none';
@@ -14,21 +22,26 @@ document.addEventListener('DOMContentLoaded', function() {
         sendMessageToBackground({ handleName: savedHandle });
     }
     fetchDataButton.addEventListener('click', function() {
-        const handleName = document.getElementById('handleName').value.trim();
-        if (handleName) {
-            saveHandleName(handleName);
-            sendMessageToBackground({ handleName });
-        } else {
-            alert('Please enter a handle name.');
-        }
+        submitHandleName(nameInput);
     });
 
     editHandleButton.addEventListener('click', function() {
         dataContainer.style.display = 'none';
         handleInputContainer.style.display = 'block';
-        document.getElementById('handleName').focus();
+        nameInput.focus();
     });
 });
+
+
+function submitHandleName(nameInput) {
+    const handleName = nameInput.value.trim();
+    if (handleName) {
+        saveHandleName(handleName);
+        sendMessageToBackground({ handleName });
+    } else {
+        alert('Please enter a handle name.');
+    }
+}
 
 function saveHandleName(handleName) {
     localStorage.setItem('leetcodeHandle', handleName);
