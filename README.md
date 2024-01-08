@@ -2,6 +2,9 @@
 
 "LeetCodeReminder" is a Chrome extension designed for coding enthusiasts and professionals who utilize LeetCode for coding practice and interview preparation. It enhances the user experience by providing personalized statistics and timely reminders.
 
+## Install the extension
+
+[Add the extension and track your progress](https://chromewebstore.google.com/detail/leetcodereminder/ecakodckfifjdedaalkhmehdpinciioa?hl=en)
 ## Features
 
 ### Personalized Practice Tracking
