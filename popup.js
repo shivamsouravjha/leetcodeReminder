@@ -59,7 +59,8 @@ function displayHandleName(handleName) {
 function sendMessageToBackground(message) {
     chrome.runtime.sendMessage(message, function(response) {
         if (response && response.leetcodeStats) {
-            displayStats(response.stats);
+            displayImage(response.stats.data)
+            displayStats(response.stats.data);
         }
     });
 }
@@ -72,6 +73,11 @@ function displayStats(response) {
     document.getElementById('mediumSolved').textContent = response.matchedUser.submitStatsGlobal.acSubmissionNum[2].count;
     document.getElementById('hardTotal').textContent = response.allQuestionsCount[3].count;
     document.getElementById('hardSolved').textContent = response.matchedUser.submitStatsGlobal.acSubmissionNum[3].count;
+}
+
+function displayImage(response){
+    document.getElementById('realName').textContent = response.matchedUser.profile.realName;
+    document.getElementById('userImage').src = response.matchedUser.profile.userAvatar;
 }
 
 function fetchQuestionOfTheDay() {

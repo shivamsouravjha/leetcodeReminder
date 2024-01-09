@@ -23,7 +23,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 });
 
 async function fetchTodaysQuestion() {
-    const query = `query questionOfToday { activeDailyCodingChallengeQuestion { date userStatus link question { acRate difficulty freqBar frontendQuestionId: questionFrontendId isFavor paidOnly: isPaidOnly status title titleSlug hasVideoSolution hasSolution topicTags { name id slug } } } }`;
+    const query = `query questionOfToday { activeDailyCodingChallengeQuestion { link question { title } } }`;
 
     const response = await fetch('https://leetcode.com/graphql', {
         method: 'POST',
@@ -37,8 +37,7 @@ async function fetchTodaysQuestion() {
 }
 
 async function fetchLeetcodeStats(handleName) {
-    const query = `query userProblemsSolved { allQuestionsCount { difficulty, count } matchedUser(username:"${handleName}"){ submitStatsGlobal{ acSubmissionNum{ difficulty, count } } } }`;
-
+    const query = `query userProfileAndProblemsSolved { matchedUser(username: "${handleName}") { profile { userAvatar realName } submitStatsGlobal { acSubmissionNum { difficulty count } } } allQuestionsCount { difficulty count } }`;
 
     const response = await fetch('https://leetcode.com/graphql', {
         method: 'POST',
@@ -48,5 +47,5 @@ async function fetchLeetcodeStats(handleName) {
         body: JSON.stringify({ query })
     });
     const data = await response.json()
-    return data.data
+    return data
 }
