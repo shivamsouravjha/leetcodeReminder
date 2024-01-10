@@ -1,68 +1,87 @@
 .statsContainer{
-  width: 30%;
+  width: 100%;
   display: flex;
   flex-direction: row;
+  padding: 10px;
 }
 
 body, html {
-  margin: 15px;
-  padding: 0;
-  font-family: montserrat;
-  background: #1e1e1e;
+  margin: 10px 15px;
+  font-family: 'Roboto', sans-serif;
+  background: #343434;
   color: white;
   text-align: left;
-  min-width: 100px;
-}
-
-.handleInputContainer {
-  padding: 20px;
-}
-
-#fetchData {
-  margin-left: 10px;
 }
 
 .hidden {
   display: none;
 }
 
-.horizontal-row {
+.handleDisplaySection{
   display: flex;
   flex-direction: row;
-  align-items: center;
+  margin-bottom: 5px;
 }
 
+.imageContainer{
+  width:30%;
+}
+
+.imageContainer img{
+  width: 70%;
+  border-radius: 50%;
+}
+
+.displayName{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 15px;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.editContainer{
+  font-size: 12px;
+  color: #d1cbcb;
+}
+
+.editContainer button{
+  font-size: 7px;
+}
 
 .solvedProblems {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start; /* Aligns children (including .circle) to the start */
+  justify-content: flex-start; 
+}
+
+.circleContaienr{
+  height: 100%;
+  width: 40%;
 }
 
 .circle {
-  background: #333;
+  background: #545454;
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  line-height: 20px;
   padding: 30px;
   display: inline-block;
   position: relative;
   margin-left: 0;
-  margin-right: auto; /* Pushes the circle to the left */
+  margin-right: auto;
 }
 
 .statsContainer {
-  width: 30%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between; /* This will distribute space evenly between the children */
+  height: 40%;
+  margin-left: 8px;
+
 }
 
-.statsContainer > div {
-  margin: 0 10px; /* Add margin to the left and right of each category */
-}
 
 .circle::before {
   content: '';
@@ -82,80 +101,70 @@ body, html {
   display: block;
 }
 
-#problemStats {
+.problemStats {
   display: flex;
-  flex-direction: column;
-  gap: 8px; /* This will create a gap between each child element */
+  flex-direction: row;
+  height: 100%;
+  margin-left: 5%;
 }
 
-.stats:not(:last-child) {
-  margin-bottom: 8px; /* Adjusted margin-bottom to reduce the gap */
+.statsName{
+  display: flex;
+  flex-direction: column;
+  padding-right: 20px;
+  margin:7% 0;
+}
+
+.statsValue{
+  margin:7% 0;
+  display: flex;
+  flex-direction: column;
+  padding-right: 20px;
+}
+
+.label{
+  margin-bottom: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fdd18e;
 }
 
 .stats {
   display: flex;
-  justify-content: space-between; /* This will ensure that the content is spaced between start and end of the container */
-  align-items: center; /* Align items vertically in the center */
-  padding-right: 10px; /* Adds padding to the right to ensure there's space between the text and the edge of the container */
+  align-items: center; 
+  margin-bottom: 10px;
+  color: #ffbd59;
 }
 
-.stats span {
-  white-space: nowrap; /* Ensures the content doesn't wrap */
+.totalSolved{
+  font-size: 14px;
 }
 
-.bar {
-  background: #333;
-  height: 5px;
+
+.questionOfTheDayContainer  {
+  margin: 15px 0px 0px 20px ; 
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 1px;
   width: 100%;
-  margin: auto;
-  position: relative;
-  border-radius: 3px;
+  color: #a6a6a6;
 }
 
-.bar::after {
-  content: '';
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-radius: 3px;
-}
-
-#questionOfTheDayContainer h2 {
-  margin-bottom: 15px; /* Adjust this value to increase or decrease the gap below the heading */
+.questionOfTheDay{
+  font-size: 11px;
+  font-weight: 400;
 }
 
 #questionOfTheDay {
+  margin-top: 5px;
   margin-bottom: 40px; 
-  color: #ffffff;
+  color: #d9d9d9;;
+  letter-spacing: 0.5px;
 }
 
 #questionOfTheDay a, 
 #questionOfTheDay a:visited {
-  color: inherit; /* This will make the link use the same color as the #questionOfTheDay div */
-  text-decoration: none; /* Removes the underline from links */
+  color: inherit; 
+  text-decoration: none; 
 }
 
-/* 
-//.question-of-the-day-title {
-
-
-.question-of-the-day-link {
-  margin-bottom: 20px; 
-}
-
-#question-of-the-day a {
-  margin-bottom: 20px;
-  display: block; 
-}
-
-#question-of-the-day a, 
-#question-of-the-day a:visited {
-  color: #ffffff; 
-  text-decoration: none;
-} */
-
-
-.easy .bar::after { background: #5cb85c; }
-.medium .bar::after { background: #f0ad4e; }
-.hard .bar::after { background: #d9534f; }

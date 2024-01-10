@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>LeetCode Stats</title>
     <link rel="stylesheet" href="popup.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -14,46 +16,51 @@
     </div>
 
     <div id="dataContainer" class="hidden">
-        <div id="handleDisplaySection">
-            Handle: <span id="handleDisplay"></span>
-            <button id="editHandle">Edit</button>
+        <div id="handleDisplaySection" class="handleDisplaySection">
+            <div class="imageContainer">
+                <img id="userImage" src="" alt="Description of Image">
+            </div>
+            <div class="displayName">
+                <span id="realName"></span>
+                <div class="editContainer">
+                    <span id="handleDisplay"></span>
+                    <button id="editHandle">Edit</button> 
+                </div>
+            </div>  
         </div>
 
-        <div id='statsContainer' class="horizontal-row">
-            <div id="solvedProblems" class="horizontal-row">
-                <div id="problemStats">
+        <div id='statsContainer' class="statsContainer">
+            <div id="problemStats" class="problemStats">
+                <div class="statsName">
+                    <span class="label">EASY</span>
+                    <span class="label">MEDIUM</span>
+                    <span class="label">HARD</span>
+                </div>
+                <div class="statsValue">
                     <div class="stats easy">
-                        <span>Easy &nbsp;</span>
-                        <span id="easySolved">0</span>/<span id="easyTotal">0</span>
+                        <span id="easySolved" class="solvedNumber">0</span>/
+                        <span id="easyTotal" class="totalNumber">0</span>
                     </div>
-
                     <div class="stats medium">
-                        <span>Medium &nbsp;</span>
-                        <span id="mediumSolved">0</span>/<span id="mediumTotal">0</span>
+                        <span id="mediumSolved" class="solvedNumber">0</span>/
+                        <span id="mediumTotal" class="totalNumber">0</span>
                     </div>
-
                     <div class="stats hard">
-                        <span>Hard &nbsp;</span>
-                        <span id="hardSolved">0</span>/<span id="hardTotal">0</span>
+                        <span id="hardSolved" class="solvedNumber">0</span>/
+                        <span id="hardTotal" class="totalNumber">0</span>
                     </div>
-                    <img id="userImage" src="" alt="Description of Image">
-                <div class="stats medium">
-                    <span>Medium &nbsp;</span>
-                    <span id="realName"></span>
                 </div>
-                </div>
-                
-                <div class="circle">
-                    <span id="totalSolved">0</span>
-                    <span>Solved</span>
+                <div class="circleContaienr">
+                    <div class="circle">
+                        <span id="totalSolved" class="totalSolved">0</span>
+                        <span>solved</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div id="questionOfTheDayContainer">
-        <h2>Question of the Day</h2>
-        <div id="questionOfTheDay"></div>
+    <div id="questionOfTheDayContainer" class="questionOfTheDayContainer">QOTD
+        <div id="questionOfTheDay" class="questionOfTheDay"></div>
     </div>
 
 
